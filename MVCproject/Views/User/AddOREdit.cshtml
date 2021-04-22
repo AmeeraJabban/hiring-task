@@ -1,0 +1,54 @@
+﻿@model MVCproject.Models.UserModel
+@{
+    ViewData["Title"] = "update";
+}
+
+
+    <h1>User Form</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4 card">
+            <form asp-action="AddOrEdit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group ">
+                    <label asp-for="First_Name" class="control-label"></label>
+                    <input asp-for="First_Name" class="form-control" />
+                    <span asp-validation-for="First_Name" class="text-danger"></span>
+                </div>
+                <div class="form-group ">
+                    <label asp-for="Last_Name" class="control-label"></label>
+                    <input asp-for="Last_Name" class="form-control" />
+                    <span asp-validation-for="Last_Name" class="text-danger"></span>
+                </div>
+                <div class="form-group ">
+                    <label asp-for="Gender" class="control-label"></label>
+                    <input asp-for="Gender" class="form-control" />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group ">
+                    <label asp-for="DOF" class="control-label"></label>
+                    <input asp-for="DOF" class="form-control" />
+                    <span asp-validation-for="DOF" class="text-danger"></span>
+                </div>
+                <div class="form-group ">
+                <label asp-for="image" class="control-label"></label>
+                <input type="file" name="image" asp-for="image" />
+                <span asp-validation-for="image" class="text-danger"></span>
+        </div>
+        <div class="form-group ">
+            <label asp-for="Status" class="control-label"></label>
+
+            <input asp-for="Status" class="form-control" />
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div>
+            <input type="submit" value="submit" class="btn-lg btn-primary" />
+        </div>
+        </form>
+    </div>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

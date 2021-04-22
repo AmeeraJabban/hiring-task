@@ -1,0 +1,82 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Mvc.Core.Common;
+
+@model IEnumerable<MVCproject.Models.UserModel>
+
+@{
+    ViewData["Title"] = "index";
+    var pagedList = (IPagedList)ViewBag.List;
+}
+
+<h1>Users List</h1>
+
+<p>
+    <a asp-action="AddOrEdit" class="btn btn-block btn-info">Create New</a>
+</p>
+<table id=" DataTable" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+
+            <th>
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.First().First_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Last_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().DOF)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.List)
+        {
+            <tr>
+                <td>
+                    <img src="~/upload/@item.imagepath" style="width:50px " />
+                </td>
+                <td>
+                    @item.First_Name
+                </td>
+                <td>
+                    @item.Last_Name
+                </td>
+                <td>
+                    @item.Gender
+                </td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    @item.DOF
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Edit", "AddOrEdit", new { id = item.ID }, new { @class = "btn" })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager(pagedList, page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToIndividualPages = true,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 10,
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" },
+    })

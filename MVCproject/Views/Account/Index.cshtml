@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MVCproject.Models.AccountModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="AddOrEdit" class="btn btn-block btn-info">Create New</a>
+</p>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Account_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avalible_Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Currency)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Avalible_Balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "AddOrEdit", new { id = item.ID }, new { @class = "btn" })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
